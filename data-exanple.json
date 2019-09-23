@@ -1,0 +1,44 @@
+{
+    "product": {
+        "id": 1,
+        "name": "Shampoo",
+        "informations": { 
+            "indication": "Dog, Car",
+            "Breed": "Small Breeds, Medium Breeds, Large Breeds"
+        },
+        "manufacturer": {
+            "id": 1,
+            "name": "Pet Clean"
+        },
+        "createdAt": "20/07/2019" 
+    },
+    "stock": {
+        "id": 1,
+        "product": {
+            "id": 1
+        },
+        "productAccount": 10,
+        "createdAt": "20/07/2019",
+        "updatedAt": "20/07/2019"
+    },
+    "stockHistory": [
+        {
+            "id": 1,
+            "stock": {
+                "id": 1
+            },
+            "state": "Added",
+            "account": 10,
+            "createdAt": "20/07/2019"
+        },
+        {
+            "id": 2,
+            "stock": {
+                "id": 1
+            },
+            "state": "Removed",
+            "account": 2,
+            "createdAt": "20/07/2019"
+        }
+    ]
+}

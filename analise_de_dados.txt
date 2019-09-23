@@ -1,0 +1,11 @@
+Produto:
+    - Nome
+    - Fornecedor
+    - Especificações
+    - Tipo Produto
+
+Fornecedor:
+    - Nome
+
+Especificações:
+    - Nome
