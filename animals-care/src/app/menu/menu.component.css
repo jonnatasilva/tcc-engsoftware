@@ -1,0 +1,18 @@
+mat-sidenav-content {
+	padding: 0 0 100px 0;
+}
+
+.custom-toolbar2 {
+	height: 30px;
+	background-color: #FFF;
+	font-size: 1em;
+	color: #333;
+}
+
+mat-sidenav {
+    transition: all 0s !important;
+}
+
+.toolbar-spacer {
+	flex: 1 1 auto;
+}

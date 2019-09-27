@@ -29,7 +29,7 @@ public class Sale {
 	@Column(name = "sale_id")
 	private Long saleId;
 	
-	@Column(name = "sale_date")
+	@Column(name = "sale_date", columnDefinition = "TIMESTAMP AS CURRENT_TIMESTAMP", updatable = false)
 	private LocalDateTime saleDate;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

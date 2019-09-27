@@ -13,6 +13,14 @@ export class NavigationUtilService {
   }
 
   navigateToProducts() {
-    this.router.navigateByUrl('/products');
+    this.router.navigateByUrl('/menu/products');
+  }
+
+  navigateToStocks() {
+    this.router.navigateByUrl('/menu/stocks');
+  }
+
+  navigateToSales() {
+    this.router.navigateByUrl('/menu/sales');
   }
 }

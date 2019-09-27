@@ -1,8 +1,11 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<p><button mat-mini-fab aria-label="New Product" routerLink="new">
+    <mat-icon aria-hidden="false" aria-label="Add a new product">add</mat-icon>
+</button></p>
+<table mat-table [dataSource]="productsList" matSort class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="productId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-        <td mat-cell *matCellDef="let element"> <a routerLink="/products/{{element.productId}}">#{{element.productId}}</a> </td>
+        <td mat-cell *matCellDef="let element"> <a routerLink="{{element.productId}}">#{{element.productId}}</a> </td>
     </ng-container>
       
     <!-- Name Column -->

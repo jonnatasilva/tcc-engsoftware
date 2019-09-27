@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ProductService } from 'src/app/provider/service/product.service';
 
 @Component({
   selector: 'app-products-table',
@@ -15,10 +16,20 @@ export class ProductsTableComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { }
+  productsList = new MatTableDataSource();
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
+    this.loadProducts();
+  }
+
+  private loadProducts() {
+    this.productService.findAllProducts()
+    .subscribe(res => {
+      this.productsList.data = res;
+    });
   }
 
 }

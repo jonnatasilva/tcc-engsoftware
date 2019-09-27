@@ -20,7 +20,6 @@ export class ProductsFormComponent implements OnInit {
 
   constructor(private activatedRouter: ActivatedRoute 
     , private productService: ProductService
-    , private router: Router
     , private navigationUtilService: NavigationUtilService) { }
 
   ngOnInit() {

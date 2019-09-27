@@ -15,6 +15,9 @@ public enum ProductUtils {
 	
 	public static Integer MANUFACTURER_LOREAL_ID = 1;
 	public static String MANUFACTURER_LOREAL_NAME = "L'Oréal";
+	
+	public static Integer MANUFACTURER_SANOL_ID = 1;
+	public static String MANUFACTURER_SANOL_NAME = "Sanol";
 
 	public static Integer PRODUCT_CREME_ID = 2;
 	public static String PRODUCT_CREME_NAME = "Creme";
@@ -83,6 +86,20 @@ public enum ProductUtils {
 		Manufacturer loreal = new Manufacturer();
 		loreal.setManufacturerId(MANUFACTURER_LOREAL_ID.longValue());
 		loreal.setName(MANUFACTURER_LOREAL_NAME);
+		return loreal;
+	}
+	
+	public ManufacturerDTO sanolDTO() {
+		ManufacturerDTO loreal = new ManufacturerDTO();
+		loreal.setManufacturerId(MANUFACTURER_SANOL_ID.longValue());
+		loreal.setName(MANUFACTURER_SANOL_NAME);
+		return loreal;
+	}
+	
+	public Manufacturer sanol() {
+		Manufacturer loreal = new Manufacturer();
+		loreal.setManufacturerId(MANUFACTURER_SANOL_ID.longValue());
+		loreal.setName(MANUFACTURER_SANOL_NAME);
 		return loreal;
 	}
 }

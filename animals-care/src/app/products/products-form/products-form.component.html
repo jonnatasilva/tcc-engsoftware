@@ -1,28 +1,29 @@
-<div class="form-container">
-    <form [formGroup]="productForm" (ngSubmit)="add()">
-        <mat-form-field>
-            <input id="name" type="text" matInput [formControl]="productForm.name" placeholder="Enter with the product name">
-            <mat-error *ngIf="productForm.name.hasError('required')">
-                The field name is required
-            </mat-error>
-            <mat-error *ngIf="productForm.name.hasError('minlength')">
-                The name must be at least 5 characters
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Manufacturer</mat-label>
-            <mat-select id="manufacturer" name="manufacturer" [formControl]="productForm.manufacturer">
-                <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.manufacturerId">
-                    {{manufacturer.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-            <textarea id="specifications" name="specifications" matInput cols="30" rows="10" [formControl]="productForm.specifications"
-            placeholder="Enter with the product specifications">
-            </textarea>
-        </mat-form-field>
-        <button mat-flat-button color="primary" type="submit" [disabled]="productForm.invalid">Add</button>
-        <button mat-flat-button color="secondary" type="submit" routerLink="/products">Cancel</button>
-    </form>
-</div>
+<form [formGroup]="productForm" (ngSubmit)="add()">
+    <mat-form-field>
+        <input id="name" type="text" matInput [formControl]="productForm.name" placeholder="Enter with the product name">
+        <mat-error *ngIf="productForm.name.hasError('required')">
+            The field name is required
+        </mat-error>
+        <mat-error *ngIf="productForm.name.hasError('minlength')">
+            The name must be at least 5 characters
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Manufacturer</mat-label>
+        <mat-select id="manufacturer" name="manufacturer" [formControl]="productForm.manufacturer">
+            <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.manufacturerId">
+                {{manufacturer.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <textarea id="specifications" name="specifications" matInput cols="30" rows="10" [formControl]="productForm.specifications"
+        placeholder="Enter with the product specifications">
+        </textarea>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit" [disabled]="productForm.invalid || !productForm.dirty">
+        Add
+    </button>
+    <button mat-flat-button color="secondary" type="submit" routerLink="/menu/products">Cancel</button>
+</form>

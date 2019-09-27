@@ -13,29 +13,26 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
-import { ProductsComponent } from './products/products.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpInterceptorService } from './provider/interceptor/http-interceptor.service';
 import { LoadingComponent } from './loading/loading.component';
-import { ProductsFormComponent } from './products/products-form/products-form.component';
 import { ProductService } from './provider/service/product.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { ProductsTableComponent } from './products/products-table/products-table.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
-    ProductsComponent,
     LoadingComponent,
-    ProductsFormComponent,
-    ProductsTableComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +48,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatSortModule,
     MatTableModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatListModule
   ],
   providers: [
     CookieService, {

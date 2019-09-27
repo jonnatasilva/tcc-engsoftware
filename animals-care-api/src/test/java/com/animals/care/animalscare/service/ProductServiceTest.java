@@ -173,11 +173,15 @@ public class ProductServiceTest {
 		Product product = ProductUtils.INSTANCE.shamppo();
 		product.setName("Teste");
 		product.setUpdatedAt(LocalDateTime.now());
+		product.setManufacturer(ProductUtils.INSTANCE.sanol());
+		product.setSpecifications("Specifications");
 		given(productRepository.save(argThat(new CustomProductMatcher(product)))).willReturn(product);
 		
 		//when
 		ProductDTO productDTO = ProductUtils.INSTANCE.shamppoDTO();
 	    productDTO.setName("Teste");
+	    productDTO.setSpecifications("Specifications");
+	    productDTO.setManufacturer(ProductUtils.INSTANCE.sanolDTO());
 	    ProductDTO updatedProductDTO = productService.updateProduct(ProductUtils.PRODUCT_SHAMPPO_ID.longValue(), productDTO);
 				
 		//then

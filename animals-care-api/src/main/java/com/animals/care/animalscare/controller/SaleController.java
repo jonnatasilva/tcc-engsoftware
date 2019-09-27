@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import com.animals.care.animalscare.service.ISaleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/sales")
 @Api(tags = "All apis related to sales")

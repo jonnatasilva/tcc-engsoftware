@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProductService } from '../provider/service/product.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-products',
@@ -8,18 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  productsList = new MatTableDataSource();
 
-  constructor(private productService: ProductService) { }
+  constructor() { }
   
   ngOnInit() {
-    this.loadProducts();
-  }
-
-  private loadProducts() {
-    this.productService.findAllProducts()
-    .subscribe(res => {
-      this.productsList.data = res;
-    });
   }
 }

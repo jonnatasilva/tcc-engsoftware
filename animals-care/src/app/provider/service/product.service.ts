@@ -15,7 +15,7 @@ export class ProductService {
     return this.httpClient.get<Array<ProductResponse>>('http://localhost:8080/api/v1/products');
   }
 
-  public findProductByProductId(productId: number): Observable<ProductResponse> {
+  public findProductByProductId(productId: Number): Observable<ProductResponse> {
     return this.httpClient.get<ProductResponse>('http://localhost:8080/api/v1/products/' + productId);
   }
 

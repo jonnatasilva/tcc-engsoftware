@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     )
     .subscribe(res => {
       this.loginService.saveDataAccess(res['access_token']);
-      this.route.navigateByUrl('home');
+      this.route.navigateByUrl('menu');
     }, err =>  {
       this.feedback = this.handleError(err);
     });
