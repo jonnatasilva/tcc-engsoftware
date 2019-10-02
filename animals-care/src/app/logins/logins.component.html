@@ -1,0 +1,18 @@
+<div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <p class="mat-error">{{ feedback }}</p>
+        <mat-form-field>
+            <input matInput placeholder="Enter with the username" [formControl]="username">
+            <mat-error *ngIf="password.hasError('required')">
+                The field username is required
+            </mat-error>    
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Enter with the password" [formControl]="password">
+            <mat-error *ngIf="password.hasError('required')">
+                The field password is required
+            </mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+</div>

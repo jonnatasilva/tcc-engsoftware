@@ -1,5 +1,5 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StockResponse } from 'src/app/provider/response/stock-response';
+import { StocksResponse } from '../response/stocks-response';
 
 export class StockForm extends FormGroup {
 
@@ -23,7 +23,7 @@ export class StockForm extends FormGroup {
         return this.get('amount');
     }
 
-    public setFromStockResponse(stockResponse: StockResponse) {
+    public setFromStockResponse(stockResponse: StocksResponse) {
         this.stockId.setValue(stockResponse.stockId);
         this.product.setValue(stockResponse.product.productId);
         this.amount.setValue(stockResponse.amount);

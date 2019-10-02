@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ProductService } from 'src/app/provider/service/product.service';
+import { ActivatedRoute } from '@angular/router';
 import { ProductForm } from './product-form';
-import { ProductRequest } from 'src/app/provider/request/product-request';
-import { ManufacturerRequest } from 'src/app/provider/request/manufacturer-request';
-import { NavigationUtilService } from 'src/app/provider/utils/navigation-util.service';
+import { NavigationUtilService } from 'src/app/system/utils/navigation-util.service';
+import { ProductsService } from '../service/products.service';
+import { ProductsRequest } from '../request/products--request';
 
 @Component({
   selector: 'app-products-form',
@@ -19,7 +17,7 @@ export class ProductsFormComponent implements OnInit {
   manufacturers = [{manufacturerId: 1, name: 'Teste'}];
 
   constructor(private activatedRouter: ActivatedRoute 
-    , private productService: ProductService
+    , private productService: ProductsService
     , private navigationUtilService: NavigationUtilService) { }
 
   ngOnInit() {
@@ -47,10 +45,11 @@ export class ProductsFormComponent implements OnInit {
     }
   }
 
-  private buildProductRequest(): ProductRequest {
-    const productRequest = new ProductRequest();
+  private buildProductRequest(): ProductsRequest {
+    const productRequest = new ProductsRequest();
     productRequest.name = this.productForm.name.value;
-    productRequest.manufacturer = new ManufacturerRequest(this.productForm.manufacturer.value, 'Teste');
+    productRequest.manufacturerId = this.productForm.manufacturer.value;
+    productRequest.manufacturerName = 'Teste';
     productRequest.specifications = this.productForm.specifications.value;
 
     return productRequest;

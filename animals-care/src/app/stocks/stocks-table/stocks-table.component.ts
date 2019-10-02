@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { StockService } from 'src/app/provider/service/stock.service';
+import { StocksService } from '../service/stocks.service';
 
 @Component({
   selector: 'app-stock-table',
@@ -16,7 +16,7 @@ export class StockTableComponent implements OnInit {
   
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private stockService: StockService) { }
+  constructor(private stockService: StocksService) { }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;

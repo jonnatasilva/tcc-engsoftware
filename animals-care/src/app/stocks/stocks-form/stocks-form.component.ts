@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { StockForm } from './stocks-form';
-import { ProductService } from 'src/app/provider/service/product.service';
-import { StockService } from 'src/app/provider/service/stock.service';
-import { StockRequest, StockProductRequest } from 'src/app/provider/request/stock-request';
-import { NavigationUtilService } from 'src/app/provider/utils/navigation-util.service';
+
+import { NavigationUtilService } from 'src/app/system/utils/navigation-util.service';
 import { ActivatedRoute } from '@angular/router';
-import { StockUpdateRequest } from 'src/app/provider/request/stock-update-request';
+import { ProductsService } from 'src/app/products/service/products.service';
+import { StocksService } from '../service/stocks.service';
+import { StocksRequest } from '../request/stocks-request';
+import { StocksUpdateRequest } from '../request/stocks-update-request';
 
 @Component({
   selector: 'app-stock-form',
@@ -19,8 +20,8 @@ export class StockFormComponent implements OnInit {
   stockForm = new StockForm();
   actualAmount = this.stockForm.amount.value;
 
-  constructor(private productService: ProductService
-    , private stockService: StockService
+  constructor(private productService: ProductsService
+    , private stockService: StocksService
     , private navigationUtilService: NavigationUtilService
     , private activatedRouter: ActivatedRoute) { }
 
@@ -68,18 +69,17 @@ export class StockFormComponent implements OnInit {
     });
   }
 
-  private buildStockRequest(): StockRequest {
-    const stockRequest = new StockRequest();
-    stockRequest.product = new StockProductRequest();
-    stockRequest.product.productId = this.stockForm.product.value;
+  private buildStockRequest(): StocksRequest {
+    const stockRequest = new StocksRequest();
+    stockRequest.productId = this.stockForm.product.value;
     stockRequest.amount = this.stockForm.amount.value;
 
     return stockRequest;
   }
 
-  private buildStockUpdateRequest(): StockUpdateRequest {
+  private buildStockUpdateRequest(): StocksUpdateRequest {
     const amountToAdd =  Number(this.stockForm.amount.value) - this.actualAmount;
-    const stockUpdateRequest = new StockUpdateRequest(amountToAdd);
+    const stockUpdateRequest = new StocksUpdateRequest(amountToAdd);
 
     return stockUpdateRequest;
   }

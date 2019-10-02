@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { ProductService } from 'src/app/provider/service/product.service';
+import { ProductsService } from '../service/products.service';
 
 @Component({
   selector: 'app-products-table',
@@ -18,7 +18,7 @@ export class ProductsTableComponent implements OnInit {
 
   productsList = new MatTableDataSource();
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;

@@ -1,5 +1,5 @@
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { ProductResponse } from 'src/app/provider/response/product-response';
+import { ProductsResponse } from '../response/products-response';
 
 export class ProductForm extends FormGroup {
 
@@ -28,7 +28,7 @@ export class ProductForm extends FormGroup {
         return this.get('specifications');
     }
 
-    setFromProductResponse(productResponse: ProductResponse) {
+    setFromProductResponse(productResponse: ProductsResponse) {
         this.productId.setValue(productResponse.productId);
         this.name.setValue(productResponse.name); 
         this.manufacturer.setValue(productResponse.manufacturer.manufacturerId);       

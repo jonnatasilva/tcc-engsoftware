@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SaleForm } from './sale-form';
-import { ProductService } from 'src/app/provider/service/product.service';
 import { SalesItem } from './sales-item';
-import { ProductResponse } from 'src/app/provider/response/product-response';
 import { SalesItemRequest, SalesRequest } from '../request/sales-request';
 import { SalesService } from '../services/sales.service';
-import { NavigationUtilService } from 'src/app/provider/utils/navigation-util.service';
+import { NavigationUtilService } from 'src/app/system/utils/navigation-util.service';
+import { ProductsService } from 'src/app/products/service/products.service';
+import { ProductsResponse } from 'src/app/products/response/products-response';
 
 @Component({
   selector: 'app-sales-form',
@@ -14,12 +14,12 @@ import { NavigationUtilService } from 'src/app/provider/utils/navigation-util.se
 })
 export class SalesFormComponent implements OnInit {
 
-  products = new Array<ProductResponse>();
+  products = new Array<ProductsResponse>();
   saleItems = new Array<SalesItem>();
 
   saleForm = new SaleForm();
 
-  constructor(private productService: ProductService
+  constructor(private productService: ProductsService
     , private salesService: SalesService
     , private navigationUtilService: NavigationUtilService) { }
 
@@ -60,7 +60,7 @@ export class SalesFormComponent implements OnInit {
     this.fillProductsCombo();
   }
 
-  private findProductByProductId(productId: Number): ProductResponse {
+  private findProductByProductId(productId: Number): ProductsResponse {
     return this.products
     .find(p => p.productId == productId);
   }

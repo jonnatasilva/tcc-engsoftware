@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { ProductsService } from './service/products.service';
 
 
 @NgModule({
@@ -34,6 +35,9 @@ import { MatTableModule } from '@angular/material/table';
     MatIconModule,
     MatSortModule,
     MatTableModule
+  ],
+  providers: [
+    ProductsService
   ]
 })
 export class ProductsModule { }
