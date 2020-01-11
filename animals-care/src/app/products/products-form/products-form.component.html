@@ -9,6 +9,15 @@
         </mat-error>
     </mat-form-field>
     <mat-form-field>
+        <input id="price" type="number" min="1" matInput [formControl]="productForm.price" placeholder="Enter with the product price">
+        <mat-error *ngIf="productForm.price.hasError('required')">
+            The field price is required
+        </mat-error>
+        <mat-error *ngIf="productForm.price.hasError('min')">
+            The name must be greater than 0
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field>
         <mat-label>Manufacturer</mat-label>
         <mat-select id="manufacturer" name="manufacturer" [formControl]="productForm.manufacturer">
             <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.manufacturerId">

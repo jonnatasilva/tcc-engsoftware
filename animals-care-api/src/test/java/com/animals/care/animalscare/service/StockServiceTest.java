@@ -78,7 +78,7 @@ public class StockServiceTest {
 	public void shouldSaveANewStock() {
 		Stock stock = StockUtils.INSTANCE.shamppo();
 		stock.setStockId(0L);
-		stock.setProduct(new Product(stock.getProduct().getProductId(), null, null, null, null, null));
+		stock.setProduct(new Product(stock.getProduct().getProductId()));
 		given(stockRepository.save(ArgumentMatchers.eq(stock))).willReturn(StockUtils.INSTANCE.shamppo());
 		
 		StockDTO stockDTO = StockUtils.INSTANCE.shamppoDTO();
@@ -97,7 +97,7 @@ public class StockServiceTest {
 		
 		Stock stockSave = StockUtils.INSTANCE.shamppo();
 		stockSave.setAmount(stockSave.getAmount() + increaseAmount);
-		stockSave.setProduct(new Product(stockSave.getProduct().getProductId(), null, null, null, null, null));
+		stockSave.setProduct(new Product(stockSave.getProduct().getProductId()));
 		given(stockRepository.save(ArgumentMatchers.eq(stockSave))).willReturn(stockSave);
 		
 		StockDTO stockUpdated = stockService.updateStockAmount(StockUtils.STOCK_SHAMPPO_ID, new StockUpdateDTO(increaseAmount));
@@ -114,7 +114,7 @@ public class StockServiceTest {
 		
 		Stock stockSave = StockUtils.INSTANCE.shamppo();
 		stockSave.setAmount(stockSave.getAmount() + increaseAmount);
-		stockSave.setProduct(new Product(stockSave.getProduct().getProductId(), null, null, null, null, null));
+		stockSave.setProduct(new Product(stockSave.getProduct().getProductId()));
 		given(stockRepository.save(ArgumentMatchers.eq(stockSave))).willReturn(stockSave);
 		
 		StockDTO stockUpdated = stockService.updateStockAmount(StockUtils.STOCK_SHAMPPO_ID, new StockUpdateDTO(increaseAmount));

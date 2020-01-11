@@ -1,5 +1,6 @@
 package com.animals.care.animalscare.utils;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -39,6 +40,7 @@ public enum ProductUtils {
 		ProductDTO creme = new ProductDTO();
 		creme.setProductId(PRODUCT_CREME_ID.longValue());
 		creme.setName(PRODUCT_CREME_NAME);
+		creme.setPrice(BigDecimal.TEN.setScale(2));
 		creme.setSpecifications("Specifications");
 		creme.setManufacturer(lorealDTO());
 		creme.setCreatedAt(PRODUCT__CREATEAT);
@@ -49,6 +51,7 @@ public enum ProductUtils {
 		Product creme = new Product();
 		creme.setProductId(PRODUCT_CREME_ID.longValue());
 		creme.setName(PRODUCT_CREME_NAME);
+		creme.setPrice(BigDecimal.TEN.setScale(2));
 		creme.setSpecifications("Specifications");
 		creme.setManufacturer(loreal());
 		creme.setCreatedAt(PRODUCT__CREATEAT);
@@ -59,6 +62,7 @@ public enum ProductUtils {
 		ProductDTO shamppo = new ProductDTO();
 		shamppo.setProductId(PRODUCT_SHAMPPO_ID.longValue());
 		shamppo.setName(PRODUCT_SHAMPPO_NAME);
+		shamppo.setPrice(BigDecimal.valueOf(20).setScale(2));
 		shamppo.setSpecifications("Indicate: Dog, Cat, Breed: Small Breeds, Medium Breeds, Large Breeds");
 		shamppo.setManufacturer(lorealDTO());
 		shamppo.setCreatedAt(PRODUCT__CREATEAT);
@@ -69,6 +73,7 @@ public enum ProductUtils {
 		Product shamppo = new Product();
 		shamppo.setProductId(PRODUCT_SHAMPPO_ID.longValue());
 		shamppo.setName(PRODUCT_SHAMPPO_NAME);
+		shamppo.setPrice(BigDecimal.valueOf(20).setScale(2));
 		shamppo.setSpecifications("Indicate: Dog, Cat, Breed: Small Breeds, Medium Breeds, Large Breeds");
 		shamppo.setManufacturer(loreal());
 		shamppo.setCreatedAt(PRODUCT__CREATEAT);

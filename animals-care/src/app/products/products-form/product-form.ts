@@ -7,6 +7,7 @@ export class ProductForm extends FormGroup {
         super({
             productId: new FormControl({ value: 0, disabled: true }),
             name: new FormControl({ value: '', disabled: false }, [Validators.required, Validators.minLength(5)]),
+            price: new FormControl({ value: 1, disabled: false }, [Validators.required, Validators.min(1)]),
             manufacturer: new FormControl({ value: 0, disabled: false }, [Validators.required, Validators.minLength(5)]),
             specifications: new FormControl({ value: '', disabled: false }, [Validators.required])
         });
@@ -18,6 +19,10 @@ export class ProductForm extends FormGroup {
 
     get name() {
         return this.get('name');
+    }
+
+    get price() {
+        return this.get('price');
     }
 
     get manufacturer() {

@@ -112,12 +112,12 @@ public class ProductControllerTest {
 	@Test
 	public void shouldFilterProductsByName() throws Exception {
 		// given
-		ProductFilter filter = new ProductFilter(ProductUtils.INSTANCE.PRODUCT_SHAMPPO_NAME);
+		ProductFilter filter = new ProductFilter(ProductUtils.PRODUCT_SHAMPPO_NAME);
 		ProductDTO shamppo = ProductUtils.INSTANCE.shamppoDTO();
 		given(productService.findAll(eq(filter))).willReturn(Arrays.asList(shamppo));
 
 		// when
-		ResultActions actions = mockMvc.perform(get(String.format("/products?name=%s", ProductUtils.INSTANCE.PRODUCT_SHAMPPO_NAME)));
+		ResultActions actions = mockMvc.perform(get(String.format("/products?name=%s", ProductUtils.PRODUCT_SHAMPPO_NAME)));
 
 		// then
 		MockHttpServletResponse response = actions
@@ -132,10 +132,10 @@ public class ProductControllerTest {
 	public void shouldFindProductById() throws Exception {
 		// given
 		ProductDTO creme = ProductUtils.INSTANCE.cremeDTO();
-		given(productService.findByProductId(ProductUtils.INSTANCE.PRODUCT_CREME_ID.longValue())).willReturn(creme);
+		given(productService.findByProductId(ProductUtils.PRODUCT_CREME_ID.longValue())).willReturn(creme);
 
 		// when
-		ResultActions actions = mockMvc.perform(get(String.format("/products/%s", ProductUtils.INSTANCE.PRODUCT_CREME_ID)));
+		ResultActions actions = mockMvc.perform(get(String.format("/products/%s", ProductUtils.PRODUCT_CREME_ID)));
 
 		// then
 		MockHttpServletResponse response = actions
@@ -165,8 +165,12 @@ public class ProductControllerTest {
 	@Test
 	public void shouldSaveAProduct() throws Exception {
 		//given
-		ManufacturerDTO manufacturer = new ManufacturerDTO(null, ProductUtils.INSTANCE.MANUFACTURER_LOREAL_NAME);
-		ProductDTO product = new ProductDTO(null, ProductUtils.INSTANCE.PRODUCT_SHAMPPO_NAME, "", manufacturer, null, null);
+		ManufacturerDTO manufacturer = new ManufacturerDTO(null, ProductUtils.MANUFACTURER_LOREAL_NAME);
+		ProductDTO product = ProductDTO.builder()
+				.name(ProductUtils.PRODUCT_SHAMPPO_NAME)
+				.manufacturer(manufacturer)
+				.build();
+		
 		given(productService.save(eq(product))).willReturn((ProductUtils.INSTANCE.shamppoDTO()));
 		
 		//when
@@ -177,7 +181,7 @@ public class ProductControllerTest {
 		//then
 		actions
 		.andExpect(status().isCreated())
-		.andExpect(header().string("Location", String.format("/products/%s", ProductUtils.INSTANCE.PRODUCT_SHAMPPO_ID)));
+		.andExpect(header().string("Location", String.format("/products/%s", ProductUtils.PRODUCT_SHAMPPO_ID)));
 		
 	}
 	
@@ -234,10 +238,10 @@ public class ProductControllerTest {
 		// given
 		ProductDTO updatedProduct = ProductUtils.INSTANCE.shamppoDTO();
 		updatedProduct.setName("ShamppoUpdated");
-		given(productService.updateProduct(eq(ProductUtils.INSTANCE.PRODUCT_SHAMPPO_ID.longValue()), eq(updatedProduct))).willReturn(updatedProduct);
+		given(productService.updateProduct(eq(ProductUtils.PRODUCT_SHAMPPO_ID.longValue()), eq(updatedProduct))).willReturn(updatedProduct);
 				
 		//when
-		ResultActions actions = mockMvc.perform(put(String.format("/products/%s", ProductUtils.INSTANCE.PRODUCT_SHAMPPO_ID))
+		ResultActions actions = mockMvc.perform(put(String.format("/products/%s", ProductUtils.PRODUCT_SHAMPPO_ID))
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(productMapper.write(updatedProduct).getJson()));
 		

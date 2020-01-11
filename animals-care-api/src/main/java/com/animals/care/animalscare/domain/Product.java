@@ -1,6 +1,7 @@
 package com.animals.care.animalscare.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -32,6 +33,9 @@ public class Product implements Serializable {
 	private Long productId;
 
 	private String name;
+	
+	@Column(name = "price", nullable = false)
+	private BigDecimal price;
 	
 	private String specifications;
 	

@@ -9,7 +9,7 @@ import { ProductsService } from '../service/products.service';
   styleUrls: ['./products-table.component.css']
 })
 export class ProductsTableComponent implements OnInit {
-  displayedColumns: string[] = ['productId', 'name', 'manufacturer', 'specifications', 'createdAt', 'updatedAt' ];
+  displayedColumns: string[] = ['productId', 'name', 'price', 'manufacturer', 'specifications', 'createdAt', 'updatedAt' ];
 
   @Input()
   dataSource = new MatTableDataSource();

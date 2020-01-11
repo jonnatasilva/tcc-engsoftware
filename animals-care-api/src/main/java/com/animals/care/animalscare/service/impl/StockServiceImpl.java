@@ -65,6 +65,7 @@ public class StockServiceImpl implements IStockService {
 	private Stock transform(StockDTO stockDTO) {
 		return BEANS_UTILS.getTransformer()
 				.skipTransformationForField("product.name")
+				.skipTransformationForField("product.price")
 				.skipTransformationForField("product.specifications")
 				.skipTransformationForField("product.manufacturer")
 				.skipTransformationForField("product.createdAt")
