@@ -12,18 +12,18 @@ export class ProductsService {
   constructor(private httpClient: HttpClient) { }
 
   public findAllProducts(): Observable<Array<ProductsResponse>> {
-    return this.httpClient.get<Array<ProductsResponse>>('http://localhost:8080/api/v1/products');
+    return this.httpClient.get<Array<ProductsResponse>>('http://192.168.15.14:8080/api/v1/products');
   }
 
   public findProductByProductId(productId: Number): Observable<ProductsResponse> {
-    return this.httpClient.get<ProductsResponse>('http://localhost:8080/api/v1/products/' + productId);
+    return this.httpClient.get<ProductsResponse>('http://192.168.15.14:8080/api/v1/products/' + productId);
   }
 
   public createProduct(productRequest: ProductsRequest) {
-    return this.httpClient.post<ProductsResponse>('http://localhost:8080/api/v1/products', productRequest);
+    return this.httpClient.post<ProductsResponse>('http://192.168.15.14:8080/api/v1/products', productRequest);
   }
 
   public updateProduct(productId: number, productRequest: ProductsRequest): Observable<ProductsResponse> {
-    return this.httpClient.put<ProductsResponse>('http://localhost:8080/api/v1/products/' + productId, productRequest);
+    return this.httpClient.put<ProductsResponse>('http://192.168.15.14:8080/api/v1/products/' + productId, productRequest);
   }
 }
