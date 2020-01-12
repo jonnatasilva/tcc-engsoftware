@@ -3,27 +3,29 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductsResponse } from '../response/products-response';
 import { ProductsRequest } from '../request/products--request';
+import { EndpointProductUtils } from '../utils/EnpointProductUtils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient
+    , private endpointProductUtils: EndpointProductUtils) { }
 
   public findAllProducts(): Observable<Array<ProductsResponse>> {
-    return this.httpClient.get<Array<ProductsResponse>>('http://192.168.15.14:8080/api/v1/products');
+    return this.httpClient.get<Array<ProductsResponse>>(this.endpointProductUtils.raiz());
   }
 
   public findProductByProductId(productId: Number): Observable<ProductsResponse> {
-    return this.httpClient.get<ProductsResponse>('http://192.168.15.14:8080/api/v1/products/' + productId);
+    return this.httpClient.get<ProductsResponse>(this.endpointProductUtils.findByProductId(productId));
   }
 
   public createProduct(productRequest: ProductsRequest) {
-    return this.httpClient.post<ProductsResponse>('http://192.168.15.14:8080/api/v1/products', productRequest);
+    return this.httpClient.post<ProductsResponse>(this.endpointProductUtils.raiz(), productRequest);
   }
 
   public updateProduct(productId: number, productRequest: ProductsRequest): Observable<ProductsResponse> {
-    return this.httpClient.put<ProductsResponse>('http://192.168.15.14:8080/api/v1/products/' + productId, productRequest);
+    return this.httpClient.put<ProductsResponse>(this.endpointProductUtils.updateProduct(productId), productRequest);
   }
 }

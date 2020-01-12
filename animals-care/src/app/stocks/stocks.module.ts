@@ -14,6 +14,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { StockTableComponent } from './stocks-table/stocks-table.component';
 import { StockFormComponent } from './stocks-form/stocks-form.component';
+import { StocksService } from './service/stocks.service';
+import { EndpointStockUtils } from './utils/EndpointStockUtils';
 
 
 @NgModule({
@@ -34,6 +36,10 @@ import { StockFormComponent } from './stocks-form/stocks-form.component';
     MatIconModule,
     MatSortModule,
     MatTableModule
+  ],
+  providers: [
+    StocksService,
+    EndpointStockUtils
   ]
 })
 export class StocksModule { }

@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ProductsService } from './service/products.service';
+import { EndpointProductUtils } from './utils/EnpointProductUtils';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ProductsService } from './service/products.service';
     MatTableModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    EndpointProductUtils
   ]
 })
 export class ProductsModule { }

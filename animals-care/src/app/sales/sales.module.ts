@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { SalesService } from './services/sales.service';
+import { EndpointSaleUtils } from './utils/EndpointSaleUtils';
 
 @NgModule({
   declarations: [SalesComponent, SalesFormComponent],
@@ -26,6 +28,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatSelectModule,
     MatCardModule,
     MatIconModule
+  ],
+  providers: [
+    SalesService,
+    EndpointSaleUtils
   ]
 })
 export class SalesModule { }

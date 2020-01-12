@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,8 +10,7 @@ import { TokenService } from 'src/app/system/token.service';
 export class LoginsService {
 
   constructor(private http: HttpClient
-    , private tokenService: TokenService
-    , private route: Router) { }
+    , private tokenService: TokenService) { }
 
   login(username: string, password: string): Observable<Response> {
     return this.http
