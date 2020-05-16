@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer
+            style="min-width: 240px;"
+            class="sidenav"
+            fixedInViewport="true"
+            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+		    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+			[opened]="!(isHandset$ | async)">
+        <mat-toolbar class="custom-toolbar2">
+            Doggis
+        </mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="products"><mat-icon class="example-icon">menu_book</mat-icon>
+                &nbsp;&nbsp;Products
+            </a>
+            <a mat-list-item routerLink="stocks"><mat-icon class="example-icon">reorder</mat-icon>
+                &nbsp;&nbsp;Stocks
+            </a>
+            <a mat-list-item routerLink="sales"><mat-icon class="example-icon">add_shopping_cart</mat-icon>
+                &nbsp;&nbsp;Vendas
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <button arial-label="Toogle sidenav" mat-icon-button (click)="drawer.toggle()">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <span #titleSpan></span>
+				<span class="toolbar-spacer"></span>
+				<span><strong id="doggisApp">Doggis</strong></span>
+				&nbsp;&nbsp;
+				
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item routerLink="../logout">
+                        <mat-icon class="example-icon">exit_to_app</mat-icon>
+					</button>
+				</mat-menu>
+				<button mat-button routerLink="../logout">
+					<mat-icon class="example-icon">exit_to_app</mat-icon>
+				</button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="container">
+            <div class="content row pt-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
