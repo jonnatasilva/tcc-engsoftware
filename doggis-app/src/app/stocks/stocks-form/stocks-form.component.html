@@ -1,27 +1,29 @@
-<form [formGroup]="stockForm" (ngSubmit)="add()">
-    <mat-form-field>
-        <mat-label>Product</mat-label>
-        <mat-select id="product" name="product" [formControl]="stockForm.product">
-            <mat-option *ngFor="let product of products" [value]="product.productId">
-                {{product.name}}
-            </mat-option>
-        </mat-select>
-        <mat-error *ngIf="stockForm.product.hasError('required')">
-            Select a product
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <input id="amount" type="number" matInput [formControl]="stockForm.amount" [min]="actualAmount">
-        <mat-error *ngIf="stockForm.amount.hasError('required')">
-            The field amount is required
-        </mat-error>
-        <mat-error *ngIf="stockForm.amount.hasError('min')">
-            The amount should be greater than or equal to {{ actualAmount }}
-        </mat-error>
-    </mat-form-field>
-    <p></p>
-    <button mat-flat-button color="primary" type="submit" [disabled]="stockForm.invalid || !stockForm.dirty">
-        Add
-    </button>
-    <button mat-flat-button color="secondary" type="submit" routerLink="/menu/stocks">Cancel</button>
-</form>
+<div class="form-container">
+    <form [formGroup]="stockForm" (ngSubmit)="add()">
+        <mat-form-field>
+            <mat-label>Product</mat-label>
+            <mat-select id="product" name="product" [formControl]="stockForm.product">
+                <mat-option *ngFor="let product of products" [value]="product.productId">
+                    {{product.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="stockForm.product.hasError('required')">
+                Select a product
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input id="amount" type="number" matInput [formControl]="stockForm.amount" [min]="actualAmount">
+            <mat-error *ngIf="stockForm.amount.hasError('required')">
+                The field amount is required
+            </mat-error>
+            <mat-error *ngIf="stockForm.amount.hasError('min')">
+                The amount should be greater than or equal to {{ actualAmount }}
+            </mat-error>
+        </mat-form-field>
+        <p></p>
+        <button mat-flat-button color="primary" type="submit" [disabled]="stockForm.invalid || !stockForm.dirty">
+            Add
+        </button>
+        <button mat-flat-button color="secondary" type="submit" routerLink="/menu/stocks">Cancel</button>
+    </form>
+</div>

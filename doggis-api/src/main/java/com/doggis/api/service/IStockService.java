@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.doggis.api.dto.StockDTO;
 import com.doggis.api.dto.StockUpdateDTO;
+import com.doggis.api.response.StockResponse;
 
 public interface IStockService {
 
-	List<StockDTO> findAll();
+	List<StockResponse> findAll();
 
 	StockDTO findByStockId(Long stockId);
 	

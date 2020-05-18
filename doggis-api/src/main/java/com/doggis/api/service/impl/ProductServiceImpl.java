@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import com.doggis.api.domain.Product;
-import com.doggis.api.dto.ProductDTO;
-import com.doggis.api.dto.ProductFilter;
-import com.doggis.api.repository.IProductRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doggis.api.domain.Product;
 import com.doggis.api.domain.QProduct;
+import com.doggis.api.dto.ProductDTO;
+import com.doggis.api.dto.ProductFilter;
 import com.doggis.api.exception.CustomException;
+import com.doggis.api.repository.IProductRepository;
 import com.doggis.api.service.IProductService;
 import com.hotels.beans.BeanUtils;
 import com.hotels.transformer.model.FieldTransformer;

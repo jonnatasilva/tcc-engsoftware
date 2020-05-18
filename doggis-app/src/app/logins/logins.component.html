@@ -1,13 +1,13 @@
-<div class="form-container">
+<div class="login-form-container">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
         <p class="mat-error">{{ feedback }}</p>
-        <mat-form-field>
+        <mat-form-field class="flex-item">
             <input matInput placeholder="Enter with the username" [formControl]="username">
             <mat-error *ngIf="password.hasError('required')">
                 The field username is required
             </mat-error>    
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="flex-item">
             <input matInput type="password" placeholder="Enter with the password" [formControl]="password">
             <mat-error *ngIf="password.hasError('required')">
                 The field password is required

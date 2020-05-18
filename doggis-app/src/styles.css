@@ -16,15 +16,31 @@ body {
 	padding: 15px 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
 table {
     width: 100%;
 }
 
 th.mat-sort-header-sorted {
     color: black;
+}
+
+.form-container {
+    width: 520px;
+}
+
+.form-container .mat-form-field {
+    width: 500px;
+}
+
+.form-container form {
+    margin-bottom: 20px;
+}
+  
+.form-container form > * {
+    margin: 5px 0;
+}
+
+.form-container form button {
+    width: 120px;
+    margin-right: 2px;
 }

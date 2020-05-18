@@ -3,15 +3,16 @@ package com.doggis.api.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.doggis.api.domain.Stock;
-import com.doggis.api.dto.StockDTO;
-import com.doggis.api.dto.StockUpdateDTO;
-import com.doggis.api.service.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doggis.api.domain.Stock;
+import com.doggis.api.dto.StockDTO;
+import com.doggis.api.dto.StockUpdateDTO;
 import com.doggis.api.exception.CustomException;
 import com.doggis.api.repository.IStockRepository;
+import com.doggis.api.response.StockResponse;
+import com.doggis.api.service.IStockService;
 import com.hotels.beans.BeanUtils;
 
 @Service
@@ -21,12 +22,12 @@ public class StockServiceImpl implements IStockService {
 	
 	@Autowired
 	private IStockRepository stockRepository;
-	
+
 	@Override
-	public List<StockDTO> findAll() {
+	public List<StockResponse> findAll() {
 		return stockRepository.findAll()
 				.stream()
-				.map(this::transform)
+				.map(this::transformToResponse)
 				.collect(Collectors.toList());
 	}
 
@@ -46,6 +47,13 @@ public class StockServiceImpl implements IStockService {
 
 	@Override
 	public StockDTO save(StockDTO stock) {
+		stockRepository
+		.findByProductProductId(stock.getProduct().getProductId())
+		.ifPresent(it -> {
+			stock.setStockId(it.getStockId());
+			stock.setAmount(stock.getAmount() + it.getAmount());
+		});
+		
 		return this.transform(stockRepository.save(this.transform(stock)));
 	}
 
@@ -78,4 +86,9 @@ public class StockServiceImpl implements IStockService {
 				.skipTransformationForField("name")
 				.transform(stock, StockDTO.class);
 	}
+	
+	private StockResponse transformToResponse(Stock stock) {
+		return new StockResponse(stock.getStockId(), stock.getProduct(), stock.getAmount());
+	}
+
 }

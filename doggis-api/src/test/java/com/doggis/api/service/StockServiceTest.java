@@ -25,6 +25,7 @@ import com.doggis.api.dto.StockUpdateDTO;
 import com.doggis.api.exception.CustomException;
 import com.doggis.api.exception.CustomException.ErrorCode;
 import com.doggis.api.repository.IStockRepository;
+import com.doggis.api.response.StockResponse;
 import com.doggis.api.service.impl.StockServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -49,9 +50,9 @@ public class StockServiceTest {
 		List<Stock> expectedStocks = StockUtils.INSTANCE.createStocks();
 		given(stockRepository.findAll()).willReturn(expectedStocks);
 
-		List<StockDTO> stocks = stockService.findAll();
+		List<StockResponse> stocks = stockService.findAll();
 
-		assertThat(stocks).isEqualTo(StockUtils.INSTANCE.createStocksDTO());
+		assertThat(stocks).isEqualTo(StockUtils.INSTANCE.createStocksResponse());
 	}
 
 	@Test

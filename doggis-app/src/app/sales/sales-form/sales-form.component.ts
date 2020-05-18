@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SaleForm } from './sale-form';
-import { SalesItem } from './sales-item';
+import { ProductsResponse } from 'src/app/products/response/products-response';
+import { ProductsService } from 'src/app/products/service/products.service';
+import { MessageService } from 'src/app/system/message.service';
 import { SalesItemRequest, SalesRequest } from '../request/sales-request';
 import { SalesService } from '../services/sales.service';
-import { NavigationUtilService } from 'src/app/system/utils/navigation-util.service';
-import { ProductsService } from 'src/app/products/service/products.service';
-import { ProductsResponse } from 'src/app/products/response/products-response';
+import { SaleForm } from './sale-form';
+import { SalesItem } from './sales-item';
 
 @Component({
   selector: 'app-sales-form',
@@ -21,7 +21,7 @@ export class SalesFormComponent implements OnInit {
 
   constructor(private productService: ProductsService
     , private salesService: SalesService
-    , private navigationUtilService: NavigationUtilService) { }
+    , private messageSevice: MessageService) { }
 
   ngOnInit() {
     this.fillProductsCombo();
@@ -39,17 +39,12 @@ export class SalesFormComponent implements OnInit {
     .map(si => {
       return new SalesItemRequest(si.productId, si.amount);
     });
-    const salesRequest = new SalesRequest(salesItems);
-    this.salesService.createSale(salesRequest)
+    
+    this.salesService.createSale(new SalesRequest(salesItems))
     .subscribe(sale => {
-      this.navigationUtilService.navigateToSales();
-    }, err => {
-      if (err.status == 400) {
-        console.log(alert(err.error['message']));
-      } else {
-        alert("Sorry! We can not execute your request");        
-      }
- 
+      this.saleItems = [];
+      this.saleForm.reset();
+      this.messageSevice.showMessage('Venda efetuada com sucesso!');
     });
   }
 
@@ -67,7 +62,7 @@ export class SalesFormComponent implements OnInit {
 
   private buildSaleItem(): SalesItem {
     const product = this.findProductByProductId(this.saleForm.product.value);
-    return new SalesItem(product.productId, product.name, this.saleForm.amount.value);
+    return new SalesItem(product.productId, product.name, product.price, this.saleForm.amount.value);
   }
 
   private removeProductFromListByProductId(productId: Number) {
@@ -79,5 +74,14 @@ export class SalesFormComponent implements OnInit {
     this.productService.findAllProducts().subscribe(res => {
       this.products = res;
     });
+  }
+
+  get saleAmount(): number {
+    if (this.saleItems.length > 0) {
+      return this.saleItems
+      .map(item => item.productPrice * item.amount)
+      .reduce((x, y) => x + y);
+    }
+    return 0;
   }
 }

@@ -1,5 +1,6 @@
 export class ProductsRequest {
     name: String;
+    price: number;
     manufacturer = new ManufacturersRequest();
     specifications: String;
 

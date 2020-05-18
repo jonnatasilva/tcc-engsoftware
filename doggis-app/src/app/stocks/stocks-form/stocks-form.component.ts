@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { StockForm } from './stocks-form';
-
-import { NavigationUtilService } from 'src/app/system/utils/navigation-util.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+
 import { ProductsService } from 'src/app/products/service/products.service';
-import { StocksService } from '../service/stocks.service';
+import { NavigationUtilService } from 'src/app/system/utils/navigation-util.service';
 import { StocksRequest } from '../request/stocks-request';
 import { StocksUpdateRequest } from '../request/stocks-update-request';
+import { StocksService } from '../service/stocks.service';
+import { StockForm } from './stocks-form';
+
 
 @Component({
   selector: 'app-stock-form',
@@ -23,7 +25,8 @@ export class StockFormComponent implements OnInit {
   constructor(private productService: ProductsService
     , private stockService: StocksService
     , private navigationUtilService: NavigationUtilService
-    , private activatedRouter: ActivatedRoute) { }
+    , private activatedRouter: ActivatedRoute
+    , private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.activatedRouter.params.subscribe(params => {

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import com.doggis.api.dto.StockDTO;
 import com.doggis.api.dto.StockUpdateDTO;
+import com.doggis.api.response.StockResponse;
 import com.doggis.api.service.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,8 @@ public class StockController {
 	
 	@GetMapping
 	@ApiOperation(notes = "Finds all stocks", value = "findAll")
-	public List<StockDTO> findAll() {
+	public List<StockResponse> findAll() {
+
 		return stockService.findAll();
 	}
 	

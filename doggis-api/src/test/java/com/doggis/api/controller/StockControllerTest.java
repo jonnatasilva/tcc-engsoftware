@@ -33,6 +33,7 @@ import com.doggis.api.dto.StockDTO;
 import com.doggis.api.dto.StockDTO.StockProductDTO;
 import com.doggis.api.dto.StockUpdateDTO;
 import com.doggis.api.exception.CustomException;
+import com.doggis.api.response.StockResponse;
 import com.doggis.api.service.IStockService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -52,7 +53,7 @@ public class StockControllerTest {
 	private MockMvc mockMvc;
 
 	private JacksonTester<StockDTO> stockMapper;
-	private JacksonTester<List<StockDTO>> listStockMapper;
+	private JacksonTester<List<StockResponse>> listStockMapper;
 	private JacksonTester<StockUpdateDTO> stockUpdateMapper;
 	
 	@Before
@@ -70,7 +71,7 @@ public class StockControllerTest {
 	
 	@Test
 	public void shouldFindAllStock() throws Exception {
-		List<StockDTO> stock = StockUtils.INSTANCE.createStocksDTO();
+		List<StockResponse> stock = StockUtils.INSTANCE.createStocksResponse();
 		given(stockService.findAll()).willReturn(stock);
 		
 		MockHttpServletResponse response = mockMvc.perform(get("/stocks"))

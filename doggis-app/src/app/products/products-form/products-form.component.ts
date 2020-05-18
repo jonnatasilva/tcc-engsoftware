@@ -51,6 +51,7 @@ export class ProductsFormComponent implements OnInit {
     productRequest.manufacturerId = this.productForm.manufacturer.value;
     productRequest.manufacturerName = 'Teste';
     productRequest.specifications = this.productForm.specifications.value;
+    productRequest.price = this.productForm.price.value;
 
     return productRequest;
   }

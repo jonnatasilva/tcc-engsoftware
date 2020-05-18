@@ -1,41 +1,53 @@
-<form [formGroup]="saleForm" (ngSubmit)="add()">
-    <mat-form-field>
-        <mat-label>Product</mat-label>
-        <mat-select id="product" name="product" [formControl]="saleForm.product">
-            <mat-option *ngFor="let product of products" [value]="product.productId">
-                {{product.name}}
-            </mat-option>
-        </mat-select>
-        <mat-error *ngIf="saleForm.product.hasError('required')">
-            Select a product
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <input id="amount" type="number" matInput [formControl]="saleForm.amount" [min]="1">
-        <mat-error *ngIf="saleForm.amount.hasError('required')">
-            The field amount is required
-        </mat-error>
-        <mat-error *ngIf="saleForm.amount.hasError('min')">
-            The amount should be greater than or equal to 1
-        </mat-error>
-    </mat-form-field>
-    <p></p>
-    <button mat-flat-button color="accent" type="submit" [disabled]="saleForm.invalid || !saleForm.dirty">
-        Add Product
-    </button>
-    <button mat-flat-button color="primary" type="button"
-    [disabled]="saleItems.length <= 0" (click)="finalizeSale()">
-        Sale
-    </button>
-    <button mat-flat-button color="secondary" type="submit" routerLink="/menu/">Cancel</button>
-    <p></p>
-    <mat-card *ngFor="let saleItem of saleItems" style="margin-bottom: 2px" role="group">
-        <mat-card-subtitle>{{ saleItem.productName }}</mat-card-subtitle>
-        <mat-card-content><small>Amount: </small><strong>{{ saleItem.amount }}</strong></mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-icon-button aria-label="Remove Product" (click)="removeSaleItem(saleItem)" title="Remove Item">
-                <mat-icon aria-hidden="false" aria-label="Remeve a Product">remove_shopping_cart</mat-icon>
+<div class="form-container">
+    <form [formGroup]="saleForm" (ngSubmit)="add()">
+        <mat-form-field>
+            <mat-label>Product</mat-label>
+            <mat-select id="product" name="product" [formControl]="saleForm.product">
+                <mat-option *ngFor="let product of products" [value]="product.productId">
+                    {{product.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="saleForm.product.hasError('required')">
+                Select a product
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input id="amount" type="number" matInput [formControl]="saleForm.amount" [min]="1">
+            <mat-error *ngIf="saleForm.amount.hasError('required')">
+                The field amount is required
+            </mat-error>
+            <mat-error *ngIf="saleForm.amount.hasError('min')">
+                The amount should be greater than or equal to 1
+            </mat-error>
+        </mat-form-field>
+        <p></p>
+
+        <button mat-flat-button color="accent" type="submit" [disabled]="saleForm.invalid || !saleForm.dirty">
+            Add Product
+        </button>
+    
+        <p>
+            <button mat-flat-button color="primary" type="button"
+            [disabled]="saleItems.length <= 0" (click)="finalizeSale()">
+                Sale
             </button>
-        </mat-card-actions>
-    </mat-card>
-</form>
+        </p>
+    </form>
+</div>
+
+<p></p>
+<h3>Sale amount: {{ saleAmount }}</h3>
+
+<mat-card *ngFor="let saleItem of saleItems" style="margin-bottom: 2px" role="group">
+    <mat-card-subtitle>{{ saleItem.productName }}</mat-card-subtitle>
+    <mat-card-content><small>Amount: </small><strong>{{ saleItem.amount }}</strong></mat-card-content>
+    <mat-card-content>
+        <small>Unit value: </small><strong>{{ saleItem.productPrice }}</strong>
+        &nbsp;<small>Total value: </small><strong>{{ saleItem.productPrice * saleItem.amount }}</strong>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-icon-button aria-label="Remove Product" (click)="removeSaleItem(saleItem)" title="Remove Item">
+            <mat-icon aria-hidden="false" aria-label="Remeve a Product">remove_shopping_cart</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

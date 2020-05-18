@@ -6,6 +6,7 @@ import java.util.List;
 import com.doggis.api.domain.Stock;
 import com.doggis.api.dto.StockDTO;
 import com.doggis.api.dto.StockDTO.StockProductDTO;
+import com.doggis.api.response.StockResponse;
 
 public enum StockUtils {
 	
@@ -24,13 +25,18 @@ public enum StockUtils {
 	public List<Stock> createStocks() {
 		return Arrays.asList(shamppo(), creme());
 	}
+	
+	public List<StockResponse> createStocksResponse() {
+		return Arrays
+				.asList(shamppoResponse(), cremeResponse());
+	}
 
 	public StockDTO cremeDTO() {
-		return new StockDTO(STOCK_CREME_ID, new StockProductDTO(ProductUtils.INSTANCE.PRODUCT_CREME_ID.longValue()), STOCK_CREME_AMOUNT);
+		return new StockDTO(STOCK_CREME_ID, new StockProductDTO(ProductUtils.PRODUCT_CREME_ID.longValue()), STOCK_CREME_AMOUNT);
 	}
 	
 	public StockDTO shamppoDTO() {
-		return new StockDTO(STOCK_SHAMPPO_ID, new StockProductDTO(ProductUtils.INSTANCE.PRODUCT_SHAMPPO_ID.longValue()), STOCK_SHAMPPO_AMOUNT);
+		return new StockDTO(STOCK_SHAMPPO_ID, new StockProductDTO(ProductUtils.PRODUCT_SHAMPPO_ID.longValue()), STOCK_SHAMPPO_AMOUNT);
 	}
 	
 	public Stock creme() {
@@ -39,5 +45,13 @@ public enum StockUtils {
 
 	public Stock shamppo() {
 		return new Stock(STOCK_SHAMPPO_ID, ProductUtils.INSTANCE.shamppo(), STOCK_SHAMPPO_AMOUNT);
+	}
+	
+	public StockResponse cremeResponse() {
+		return new StockResponse(STOCK_CREME_ID, ProductUtils.INSTANCE.creme(), STOCK_CREME_AMOUNT);
+	}
+	
+	public StockResponse shamppoResponse() {
+		return new StockResponse(STOCK_SHAMPPO_ID, ProductUtils.INSTANCE.shamppo(), STOCK_SHAMPPO_AMOUNT);
 	}
 }

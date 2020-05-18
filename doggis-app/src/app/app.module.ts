@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,8 @@ import { LoadingsModule } from './loadings/loadings.module';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LoadingsModule
+    LoadingsModule,
+    MatSnackBarModule
   ],
   providers: [
     CookieService, {
